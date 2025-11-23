@@ -1,0 +1,178 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- // DANH SÁCH OWNER (CHỦ VĨNH VIỄN)
+local OWNERS = {
+	"anhchangm52",
+	"anhchangm53",
+	"anhchangm5",
+	"toyvayacutdii",
+	"anhaycogihontoi",
+	"dao_beo"
+}
+
+-- // Lưu admin tạm thời (mất khi reload script)
+local TempAdmins = {}
+
+-- // Kiểm tra quyền
+local function isOwner(player)
+	for _, name in ipairs(OWNERS) do
+		if player.Name == name then
+			return true
+		end
+	end
+	return false
+end
+
+local function isAdmin(player)
+	if isOwner(player) then return true end
+	for _, name in ipairs(TempAdmins) do
+		if player.Name == name then
+			return true
+		end
+	end
+	return false
+end
+
+-- // Danh sách lệnh admin
+local AdminCommands = {
+	[".b"] = "Teleport đến owner",
+	[".kick"] = "Kick bản thân (dùng để trêu)",
+	[".fr"] = "Freeze (khóa cứng)",
+	[".unfr"] = "Unfreeze",
+	[".test"] = "Gửi tin nhắn chat toàn server",
+	[".blind"] = "Phá camera (mù tạm thời)",
+	[".fling"] = "Bay vèo vèo (fling)",
+	[".kill"] = "Giả chết + respawn",
+	[".o"] = "Bật quỹ đạo quanh owner",
+	[".uno"] = "Tắt quỹ đạo",
+	[".2011 add [tên]"] = "Cấp admin tạm thời cho người chơi",
+	[".helpcm"] = "Hiển thị danh sách lệnh admin"
+}
+
+-- // Biến toàn cục
+getgenv().orbit = false
+
+-- // Hàm in danh sách lệnh
+local function printHelp(player)
+	print("=== DANH SÁCH LỆNH ADMIN ===")
+	for cmd, desc in pairs(AdminCommands) do
+		print(cmd .. " - " .. desc)
+	end
+	print("=========================")
+end
+
+-- // Xử lý chat
+Players.LocalPlayer.Chatted:Connect(function(msg)
+	local lower = msg:lower()
+
+	-- // Chỉ admin/owner mới dùng được lệnh
+
+	-- // Lệnh cấp admin tạm thời
+	if lower:find("^%.2011 add ") then
+		local targetName = msg:match("^%.2011 add (.+)")
+		if targetName then
+			targetName = targetName:gsub("^%s*(.-)%s*$", "%1") -- trim
+			table.insert(TempAdmins, targetName)
+			print("[ADMIN] Đã cấp quyền tạm thời cho: " .. targetName)
+		end
+		return
+	end
+	-- // Help
+	if lower == ".helpcm" then
+		printHelp(Players.LocalPlayer)
+		return
+	end
+	if not isAdmin(Players.LocalPlayer) then return end
+	-- // Các lệnh hành động
+	if lower == ".b" then
+		for _, owner in ipairs(OWNERS) do
+			local plr = Players:FindFirstChild(owner)
+			if plr and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+				Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
+					CFrame.new(plr.Character.HumanoidRootPart.Position) * CFrame.new(0, 2, 0)
+				break
+			end
+		end
+
+	elseif lower == ".kick" then
+		Players.LocalPlayer:Kick("HitTalker Kicked You!")
+
+	elseif lower == ".fr" then
+		local char = Players.LocalPlayer.Character
+		if char then
+			if char:FindFirstChild("LowerTorso") then char.LowerTorso.Anchored = true end
+			if char:FindFirstChild("UpperTorso") then char.UpperTorso.Anchored = true end
+		end
+
+	elseif lower == ".unfr" then
+		local char = Players.LocalPlayer.Character
+		if char then
+			if char:FindFirstChild("LowerTorso") then char.LowerTorso.Anchored = false end
+			if char:FindFirstChild("UpperTorso") then char.UpperTorso.Anchored = false end
+		end
+
+	elseif lower == ".test" then
+		if ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents") then
+			local event = ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
+			if event then
+				event:FireServer("İm Using Arctic", "All")
+			end
+		end
+
+	elseif lower == ".blind" then
+		if workspace:FindFirstChildOfClass("Camera") then
+			workspace.CurrentCamera:Destroy()
+		end
+
+	elseif lower == ".fling" then
+		local hrp = Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+		if hrp then
+			hrp.Velocity = Vector3.new(0, 99999, 99999)
+		end
+
+	elseif lower == ".kill" then
+		local hum = Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+		if hum then
+			hum:ChangeState(15)
+			task.wait()
+			hum:ChangeState(16)
+			task.wait()
+			hum:ChangeState(0)
+		end
+
+	elseif lower == ".o" then
+		getgenv().orbit = true
+		print("[ORBIT] Đã bật quỹ đạo quanh owner")
+
+	elseif lower == ".uno" then
+		getgenv().orbit = false
+		print("[ORBIT] Đã tắt quỹ đạo")
+	end
+end)
+
+-- // Hệ thống quỹ đạo
+RunService.Stepped:Connect(function()
+	if getgenv().orbit and Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+		for _, owner in ipairs(OWNERS) do
+			local plr = Players:FindFirstChild(owner)
+			if plr and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+				local root = plr.Character.HumanoidRootPart
+				local time = tick()
+				local angle = 2 * math.pi * time * 1 % (2 * math.pi)
+				Players.LocalPlayer.Character.HumanoidRootPart.CFrame = 
+					CFrame.new(root.Position) * CFrame.Angles(0, angle, 0) * CFrame.new(0, 0, 10)
+				break
+			end
+		end
+	end
+end)
+
+if isOwner(Players.LocalPlayer) then
+	print("[OWNER] Bạn là chủ vĩnh viễn!")
+    print("[INFO] Dùng .helpcm để xem lệnh")
+elseif isAdmin(Players.LocalPlayer) then
+	print("[TEMP ADMIN] Bạn có quyền tạm thời!")
+    print("[INFO] Dùng .helpcm để xem lệnh")
+end
