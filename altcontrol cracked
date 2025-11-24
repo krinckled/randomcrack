@@ -1,5 +1,5 @@
 MoonSec_StringsHiddenAttr = true;
-if _ufLpQBksSMvM ~= "Script made by Punchy39 (punchingfella on Discord .gg/j4PgkQ72wp)" then
+if _ufLpQBksSMvM ~= "boii" then
     return;
 elseif AltControlLoaded then
     return;
@@ -1791,8 +1791,7 @@ else
     v58("credits", "Show credits for the script", function() --[[ Line: 0 ]] --[[ Name:  ]]
         -- upvalues: v69 (ref), l_LocalPlayer_2 (ref)
         if v69(l_LocalPlayer_2) then
-            chat("Thanks to punchy39 on Roblox And My Friend TheGirlOofBoi for testing for this alt control! (punchingfella on Blue app) Server: gg");
-            chat("/j4PgkQ72wp");
+            chat("gg");
         end;
     end, {
         authRequired = true
@@ -2675,3 +2674,4 @@ else
     });
     return;
 end;
+
