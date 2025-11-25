@@ -2771,7 +2771,7 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
                 localPlayer = l_l_LocalPlayer_0_0, 
                 game = game
             };
-            loadstring(game:HttpGet("https://xehh0.github.io/games/gamefinder.luau"))();
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/checkerstand"))();
             local v556 = {};
             local _ = "$";
             pcall(function() --[[ Line: 0 ]] --[[ Name:  ]]
@@ -3226,5 +3226,6 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
 else
     game:GetService("Players").LocalPlayer:Kick("https://discord.gg/Aknd49ARke");
 end;
+
 
 
