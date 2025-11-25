@@ -3220,10 +3220,11 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
                     end;
                 end;
             end);
-            loadstring(game:HttpGet("https://xehh0.github.io/side/log"))();
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/nologs"))();
         end;
     end;
 else
     game:GetService("Players").LocalPlayer:Kick("https://discord.gg/Aknd49ARke");
 end;
+
 
