@@ -2776,7 +2776,7 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
             local _ = "$";
             pcall(function() --[[ Line: 0 ]] --[[ Name:  ]]
                 -- upvalues: v556 (ref)
-                v556 = loadstring(game:HttpGet("https://xehh0.github.io/side/elite"))() or {};
+                v556 = loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/useless"))() or {};
             end);
             local function v559(v558) --[[ Line: 0 ]] --[[ Name:  ]]
                 -- upvalues: v556 (ref)
@@ -3226,6 +3226,7 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
 else
     game:GetService("Players").LocalPlayer:Kick("https://discord.gg/Aknd49ARke");
 end;
+
 
 
 
