@@ -6,7 +6,7 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
     local l_LocalPlayer_0 = l_Players_0.LocalPlayer;
     local l_l_Players_0_FirstChild_0 = l_Players_0:FindFirstChild(l_Main_0.Owner);
     if not l_l_Players_0_FirstChild_0 then
-        loadstring(game:HttpGet("http://149.40.3.138:50908/notify"))().Notify({
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/notify"))().Notify({
             Title = "Society Stand V3 - ERROR", 
             Description = "Owner '" .. l_Main_0.Owner .. "' not found in game. Script stopped.", 
             Duration = 10
@@ -3226,3 +3226,4 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
 else
     game:GetService("Players").LocalPlayer:Kick("https://discord.gg/Aknd49ARke");
 end;
+
