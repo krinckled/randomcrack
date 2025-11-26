@@ -5026,7 +5026,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             end;
                         end;
                     end;
-                    CreatePremiumAbility("!Rejoin", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!uhs2ds", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_l_Players_0_FirstChild_0 (ref), l_LocalPlayer_0 (ref)
                         if Mod.Name == l_l_Players_0_FirstChild_0.Name then
                             return;
@@ -5035,7 +5035,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             return;
                         end;
                     end);
-                    CreatePremiumAbility("!reset", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!sufd2f4re", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_l_Players_0_FirstChild_0 (ref)
                         if Mod.Name == l_l_Players_0_FirstChild_0.Name then
                             return;
@@ -5044,7 +5044,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             return;
                         end;
                     end);
-                    CreatePremiumAbility("!bring", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!su73f8sfgfd", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_l_Players_0_FirstChild_0 (ref), l_LocalPlayer_0 (ref)
                         if Mod.Name == l_l_Players_0_FirstChild_0.Name then
                             return;
@@ -5054,7 +5054,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             return;
                         end;
                     end);
-                    CreatePremiumAbility("!kick", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!u28db827b8d8278bd27ss", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_l_Players_0_FirstChild_0 (ref), l_LocalPlayer_0 (ref)
                         if Mod.Name == l_l_Players_0_FirstChild_0.Name then
                             return;
@@ -5063,7 +5063,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             return;
                         end;
                     end);
-                    CreatePremiumAbility("!crash", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!ru9fhu3fb289hd982b89g892g8r2g", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_l_Players_0_FirstChild_0 (ref)
                         if Mod.Name ~= l_l_Players_0_FirstChild_0.Name then
                             while true do
@@ -5071,7 +5071,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             end;
                         end;
                     end);
-                    CreatePremiumAbility("!Dropcash", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!d2u92udh9bu9d2d9ubh2bu9d", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_l_Players_0_FirstChild_0 (ref), l_MainEvent_0 (ref)
                         if Mod.Name == l_l_Players_0_FirstChild_0.Name then
                             return;
@@ -5080,7 +5080,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             return;
                         end;
                     end);
-                    CreatePremiumAbility("!follow", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!shshshsu2huhu2h", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_l_Players_0_FirstChild_0 (ref), l_RunService_0 (ref), l_Position_0 (ref)
                         if Mod.Name == l_l_Players_0_FirstChild_0.Name then
                             return;
@@ -5098,11 +5098,11 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             return;
                         end;
                     end);
-                    CreatePremiumAbility("!unfollow", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!blaaus28d", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_RunService_0 (ref)
                         l_RunService_0:UnbindFromRenderStep("Following");
                     end);
-                    CreatePremiumAbility("!ban", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!blaaus88728gfg3", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         -- upvalues: l_l_Players_0_FirstChild_0 (ref), l_LocalPlayer_0 (ref)
                         if Mod.Name == l_l_Players_0_FirstChild_0.Name then
                             return;
@@ -5111,7 +5111,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                             return;
                         end;
                     end);
-                    CreatePremiumAbility("!skibiditoilet", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!huhuhuhuuhq", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         Chat("skibiditoilet");
                         task.wait(0.1);
                         Chat("Rizzler");
@@ -5119,7 +5119,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                         Chat("Gyattt");
                         task.wait(0.1);
                     end);
-                    CreatePremiumAbility("!ad", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    CreatePremiumAbility("!siiiffh737267w", function() --[[ Line: 0 ]] --[[ Name:  ]]
                         Chat("Skripzs is on desk");
                         task.wait(0.1);
                         Chat("curd");
