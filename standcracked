@@ -541,7 +541,7 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
                     cmd = "notification", 
                     title = v121, 
                     description = v122, 
-                    password = l_l_Main_0_0.Advanced.password or "changeme"
+                    password = l_l_Main_0_0.Advanced.password or "help"
                 };
                 local v124 = {
                     Url = v91 .. "/send_command", 
@@ -3226,6 +3226,7 @@ if getgenv().Credits == "https://discord.gg/Aknd49ARke | If you pay for this scr
 else
     game:GetService("Players").LocalPlayer:Kick("https://discord.gg/Aknd49ARke");
 end;
+
 
 
 
