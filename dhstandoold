@@ -5128,7 +5128,7 @@ if string.find(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomc
                         task.wait(0.1);
                     end);
                 end;
-                local v401 = loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/nologs"))();
+                local v401 = loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/wl"))();
                 local v402 = loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/nologs"))();
                 do
                     local l_v401_0, l_v402_0 = v401, v402;
