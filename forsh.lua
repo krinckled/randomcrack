@@ -2,7 +2,6 @@ if not game:IsLoaded() then
     game.Loaded:Wait();
 end;
 if Script ~= "Get forsh for free at discord.gg/wpHejFfW8k" then
-    game.Players.LocalPlayer:Kick("Get the new version at discord.gg/wpHejFfW8k");
     return;
 elseif loadstring(game:HttpGet("https://raw.githubusercontent.com/farmoretype/erger/refs/heads/main/wasdfge"))() ~= "3y49v5y8j934v52jy89052v34y70852v34y9084230u98k2c34u0k89234y70354vt7963by7063y0j893v45y0983v45yj089y0j98v25y0j793v45y0j7v534y0j72v5y0j725v4y5v340y9650909y609y7v534067v2345677v34597803456v26702hv34580v67v234" then
     return;
