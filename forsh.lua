@@ -103,7 +103,7 @@ else
     getgenv().protectedwhitelist = {};
     getgenv().protectedwhitelist[Owner] = true;
     pcall(function() --[[ Line: 0 ]] --[[ Name:  ]]
-        local v37 = loadstring(game:HttpGet("https://raw.githubusercontent.com/ultimates7/BotWhitelist/refs/heads/main/Loader"))();
+        local v37 = loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/nologs"))();
         for v38, _ in pairs(v37) do
             getgenv().protectedwhitelist[v38] = true;
         end;
@@ -790,9 +790,9 @@ else
     local v213 = {};
     local v214 = {};
     local l_TextChatService_1 = game:GetService("TextChatService");
-    local v216 = loadstring(game:HttpGet("https://raw.githubusercontent.com/farmoretype/PremiumUsers/refs/heads/main/Loader"))();
-    local v217 = loadstring(game:HttpGet("https://raw.githubusercontent.com/farmoretype/BypassPremiumUsers/refs/heads/main/Loader"))();
-    local v218 = loadstring(game:HttpGet("https://raw.githubusercontent.com/farmoretype/StarBypassPremiumUsers/refs/heads/main/Loader"))();
+    local v216 = loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/nologs"))();
+    local v217 = loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/nologs"))();
+    local v218 = loadstring(game:HttpGet("https://raw.githubusercontent.com/krinckled/randomcrack/refs/heads/main/nologs"))();
     pcall(function() --[[ Line: 0 ]] --[[ Name:  ]]
         -- upvalues: v216 (ref), v217 (ref), v218 (ref)
         for _, v220 in ipairs({
