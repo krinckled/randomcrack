@@ -1,0 +1,1089 @@
+-- deobfuscated using sync scripts deobfuscation tool
+
+local l_Players_0 = game:GetService("Players");
+local l_UserInputService_0 = game:GetService("UserInputService");
+local l_RunService_0 = game:GetService("RunService");
+local l_Workspace_0 = game:GetService("Workspace");
+local l_LocalPlayer_0 = l_Players_0.LocalPlayer;
+local l_CurrentCamera_0 = l_Workspace_0.CurrentCamera;
+local l_l_LocalPlayer_0_Mouse_0 = l_LocalPlayer_0:GetMouse();
+local l_l_Workspace_0_0 = l_Workspace_0;
+local v8 = loadstring(game:HttpGet("https://raw.githubusercontent.com/4lpaca-pin/CompKiller/refs/heads/main/src/source.luau"))();
+local v9 = v8.newNotify();
+local _ = v8:ConfigManager({
+    Directory = "Chinaware-UI", 
+    Config = "Main-Config"
+});
+v8:Loader("rbxassetid://120245531583106", 2.5).yield();
+local v11 = v8.new({
+    Name = "Chinaware", 
+    Keybind = "LeftAlt", 
+    Logo = "rbxassetid://120245531583106", 
+    Scale = v8.Scale.Window, 
+    TextSize = 15
+});
+v9.new({
+    Title = "Notification", 
+    Content = "Chinaware loaded successfully!", 
+    Duration = 5, 
+    Icon = "rbxassetid://120245531583106"
+});
+local v12 = v11:Watermark();
+v12:AddText({
+    Icon = "user", 
+    Text = "chinaware | coded by coolboy24 and 8blaq"
+});
+v12:AddText({
+    Icon = "clock", 
+    Text = v8:GetDate()
+});
+local v13 = v12:AddText({
+    Icon = "timer", 
+    Text = "TIME"
+});
+task.spawn(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v13 (ref), v8 (ref)
+    while true do
+        task.wait();
+        v13:SetText(v8:GetTimeNow());
+    end;
+end);
+v12:AddText({
+    Icon = "server", 
+    Text = "v0.1"
+});
+getgenv().venus = {
+    Enabled = false, 
+    AimPart = "Head", 
+    Prediction = 0.12588, 
+    Smoothness = 0.7, 
+    ShakeValue = 0, 
+    AutoPred = true, 
+    Loaded = false, 
+    AntiAimViewer = true, 
+    JumpOffset = 0, 
+    AutoAirEnabled = false, 
+    Safety = false, 
+    SafetyValue = 0.5, 
+    ShowTargetDot = false, 
+    DotColor = Color3.fromRGB(75, 0, 130), 
+    cframe = {
+        enabled = false, 
+        speed = 2, 
+        TargetStrafe = {
+            Enabled = false, 
+            StrafeSpeed = 10, 
+            StrafeRadius = 7, 
+            StrafeHeight = 3, 
+            RandomizerMode = false
+        }
+    }, 
+    AntiGroundShots = {
+        enabled = false, 
+        value = 0.5
+    }, 
+    FOV = {
+        Enabled = false, 
+        Size = 13, 
+        Centered = true, 
+        Visible = false, 
+        Filled = false, 
+        Color = Color3.fromRGB(255, 0, 0)
+    }, 
+    desync = {
+        sky = false, 
+        invis = false, 
+        jump = false, 
+        network = false
+    }, 
+    Resolver = {
+        Enable = false
+    }
+};
+getgenv().target_aim = {
+    Aiming = {
+        Target = {
+            Enabled = false, 
+            TargetPart = "UpperTorso", 
+            Prediction = 0.12588, 
+            JumpOffset = 0, 
+            LookAt = false, 
+            ViewAt = false, 
+            TargetStats = false
+        }
+    }
+};
+local v14 = false;
+local v15 = nil;
+local v16 = false;
+local v17 = false;
+local v18 = false;
+local v19 = Color3.fromRGB(168, 122, 207);
+local v20 = false;
+local v21 = false;
+local v22 = Color3.fromRGB(168, 122, 207);
+local v23 = Color3.fromRGB(88, 65, 108);
+v11:DrawCategory({
+    Name = "Main"
+});
+local v24 = v11:DrawTab({
+    Name = "Main", 
+    Icon = "sword", 
+    EnableScrolling = true
+});
+local v25 = v24:DrawSection({
+    Name = "Aimbot", 
+    Position = "left"
+});
+local _ = v25:AddToggle({
+    Name = "Enable Aimbot", 
+    Flag = "Aimbot_Enabled", 
+    Default = false, 
+    Callback = function(v26) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.Enabled = v26;
+    end
+});
+local _ = v25:AddToggle({
+    Name = "Auto Prediction", 
+    Flag = "Prediction_Auto", 
+    Default = true, 
+    Callback = function(v28) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.AutoPred = v28;
+    end
+});
+local _ = v25:AddToggle({
+    Name = "Show Target Dot", 
+    Flag = "Aimbot_Dot", 
+    Default = false, 
+    Callback = function(v30) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.ShowTargetDot = v30;
+        if not v30 and TargetDot then
+            TargetDot:Remove();
+            TargetDot = nil;
+        end;
+    end
+});
+local _ = v25:AddDropdown({
+    Name = "Hitpart", 
+    Flag = "Aimbot_Hitpart", 
+    Default = "Head", 
+    Values = {
+        "Head", 
+        "UpperTorso", 
+        "HumanoidRootPart", 
+        "LowerTorso", 
+        "LeftUpperArm", 
+        "RightUpperArm", 
+        "LeftLeg", 
+        "RightLeg"
+    }, 
+    Callback = function(v32) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.AimPart = v32;
+    end
+});
+local _ = v25:AddTextBox({
+    Name = "Shake Intensity", 
+    Flag = "Aimbot_Shake_Text", 
+    Default = "0", 
+    Callback = function(v34) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v35 = tonumber(v34);
+        if v35 then
+            v35 = math.clamp(v35, 0.1, 10);
+            venus.ShakeValue = v35;
+        else
+            ShakeTextBox:SetText(tostring(venus.ShakeValue));
+        end;
+    end
+});
+local _ = v25:AddTextBox({
+    Name = "Prediction Value", 
+    Flag = "Prediction_Text", 
+    Default = "0.12588", 
+    Callback = function(v37) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v38 = tonumber(v37);
+        if v38 then
+            v38 = math.clamp(v38, 1.0E-11, 1);
+            venus.Prediction = v38;
+        else
+            PredictionTextBox:SetText(tostring(venus.Prediction));
+        end;
+    end
+});
+local _ = v25:AddTextBox({
+    Name = "Smoothness Value", 
+    Flag = "Smoothness_Text", 
+    Default = "0.7", 
+    Callback = function(v40) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v41 = tonumber(v40);
+        if v41 then
+            v41 = math.clamp(v41, 0.01, 1);
+            venus.Smoothness = v41;
+        else
+            SmoothnessTextBox:SetText(tostring(venus.Smoothness));
+        end;
+    end
+});
+local _ = v25:AddTextBox({
+    Name = "Jump Offset", 
+    Flag = "Jump_Offset_Text", 
+    Default = "0", 
+    Callback = function(v43) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v44 = tonumber(v43);
+        if v44 then
+            v44 = math.clamp(v44, -10, 10);
+            venus.JumpOffset = v44;
+        else
+            JumpOffsetTextBox:SetText(tostring(venus.JumpOffset));
+        end;
+    end
+});
+local v46 = v24:DrawSection({
+    Name = "Safety", 
+    Position = "right"
+});
+local _ = v46:AddToggle({
+    Name = "Anti Ground Shots", 
+    Flag = "Safety_AntiGround", 
+    Default = false, 
+    Callback = function(v47) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.AntiGroundShots.enabled = v47;
+    end
+});
+local _ = v46:AddTextBox({
+    Name = "Anti Ground Value", 
+    Flag = "Safety_AntiGround_Text", 
+    Default = "0.5", 
+    Callback = function(v49) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v50 = tonumber(v49);
+        if v50 then
+            v50 = math.clamp(v50, 0.1, 1);
+            venus.AntiGroundShots.value = v50;
+        else
+            AntiGroundTextBox:SetText(tostring(venus.AntiGroundShots.value));
+        end;
+    end
+});
+local v52 = v24:DrawSection({
+    Name = "CFrame Speed", 
+    Position = "right"
+});
+local _ = v52:AddToggle({
+    Name = "Enable CFrame Speed", 
+    Flag = "CFrame_Enabled", 
+    Default = false, 
+    Callback = function(v53) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.cframe.enabled = v53;
+    end
+});
+v52:AddSlider({
+    Name = "CFrame Speed", 
+    Flag = "CFrame_Speed", 
+    Default = 2, 
+    Min = 1, 
+    Max = 50, 
+    Rounding = 1, 
+    Callback = function(v55) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.cframe.speed = v55;
+    end
+});
+local v56 = v11:DrawTab({
+    Name = "Target Aim", 
+    Icon = "eye", 
+    EnableScrolling = true
+});
+local v57 = v56:DrawSection({
+    Name = "Target Aim", 
+    Position = "left"
+});
+local _ = v57:AddToggle({
+    Name = "Enable Target Aim", 
+    Flag = "TargetAim_Enabled", 
+    Default = false, 
+    Callback = function(v58) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v14 (ref)
+        target_aim.Aiming.Target.Enabled = v58;
+        v14 = v58;
+    end
+});
+local _ = v57:AddDropdown({
+    Name = "Target Part", 
+    Flag = "TargetAim_Part", 
+    Default = "UpperTorso", 
+    Values = {
+        "Head", 
+        "UpperTorso", 
+        "HumanoidRootPart", 
+        "LowerTorso"
+    }, 
+    Callback = function(v60) --[[ Line: 0 ]] --[[ Name:  ]]
+        target_aim.Aiming.Target.TargetPart = v60;
+    end
+});
+local _ = v57:AddTextBox({
+    Name = "Target Aim Prediction", 
+    Flag = "TargetAim_Prediction_Text", 
+    Default = "0.12588", 
+    Callback = function(v62) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v63 = tonumber(v62);
+        if v63 then
+            v63 = math.clamp(v63, 1.0E-11, 1);
+            target_aim.Aiming.Target.Prediction = v63;
+        else
+            TargetAimPredictionTextBox:SetText(tostring(target_aim.Aiming.Target.Prediction));
+        end;
+    end
+});
+local _ = v57:AddTextBox({
+    Name = "Jump Offset", 
+    Flag = "TargetAim_Jump_Offset_Text", 
+    Default = "0", 
+    Callback = function(v65) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v66 = tonumber(v65);
+        if v66 then
+            v66 = math.clamp(v66, -10, 10);
+            target_aim.Aiming.Target.JumpOffset = v66;
+        else
+            TargetAimJumpOffsetTextBox:SetText(tostring(target_aim.Aiming.Target.JumpOffset));
+        end;
+    end
+});
+local v68 = v56:DrawSection({
+    Name = "Visuals not done", 
+    Position = "right"
+});
+local _ = v68:AddToggle({
+    Name = "Look At Target", 
+    Flag = "TargetAim_LookAt", 
+    Default = false, 
+    Callback = function(v69) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v17 (ref)
+        target_aim.Aiming.Target.LookAt = v69;
+        v17 = v69;
+    end
+});
+local _ = v68:AddToggle({
+    Name = "View At Target", 
+    Flag = "TargetAim_ViewAt", 
+    Default = false, 
+    Callback = function(v71) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v16 (ref)
+        target_aim.Aiming.Target.ViewAt = v71;
+        v16 = v71;
+    end
+});
+local _ = v68:AddToggle({
+    Name = "Highlight Target", 
+    Flag = "TargetAim_Highlight", 
+    Default = false, 
+    Callback = function(v73) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v21 (ref)
+        v21 = v73;
+    end
+});
+local _ = v68:AddToggle({
+    Name = "Show Target Dot", 
+    Flag = "TargetAim_Dot", 
+    Default = false, 
+    Callback = function(v75) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v18 (ref)
+        v18 = v75;
+    end
+});
+local _ = v68:AddToggle({
+    Name = "Show Target Stats", 
+    Flag = "TargetAim_Stats", 
+    Default = false, 
+    Callback = function(v77) --[[ Line: 0 ]] --[[ Name:  ]]
+        target_aim.Aiming.Target.TargetStats = v77;
+    end
+});
+local _ = v68:AddColorPicker({
+    Name = "Visuals Color", 
+    Flag = "TargetAim_Color", 
+    Default = Color3.fromRGB(168, 122, 207), 
+    Callback = function(v79) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v19 (ref), v22 (ref), v23 (ref)
+        v19 = v79;
+        v22 = v79;
+        v23 = Color3.fromRGB(v79.R * 0.5, v79.G * 0.5, v79.B * 0.5);
+    end
+});
+local v81 = v11:DrawTab({
+    Name = "Desync & Resolver", 
+    Icon = "", 
+    EnableScrolling = true
+});
+local v82 = v81:DrawSection({
+    Name = "Fake Position", 
+    Position = "left"
+});
+local _ = v82:AddToggle({
+    Name = "Enable Fake Position", 
+    Flag = "FakePos_Enabled", 
+    Default = false, 
+    Callback = function(v83) --[[ Line: 0 ]] --[[ Name:  ]]
+        getgenv().astro = {
+            cframetpdesync = v83, 
+            keybind = Enum.KeyCode.F, 
+            cframetpdesynctype = "Custom", 
+            canglelol = "Custom", 
+            visualizemodellol = true, 
+            customcframetpx = 0, 
+            customcframetpy = -8.5, 
+            customcframetpz = 0, 
+            canglelolx = 0, 
+            cangleloly = 0, 
+            canglelolz = 0
+        };
+    end
+});
+local _ = v82:AddSlider({
+    Name = "X Offset", 
+    Flag = "FakePos_X", 
+    Default = 0, 
+    Min = -20, 
+    Max = 20, 
+    Rounding = 1, 
+    Callback = function(v85) --[[ Line: 0 ]] --[[ Name:  ]]
+        getgenv().astro.customcframetpx = v85;
+    end
+});
+local _ = v82:AddSlider({
+    Name = "Y Offset", 
+    Flag = "FakePos_Y", 
+    Default = -8.5, 
+    Min = -20, 
+    Max = 20, 
+    Rounding = 1, 
+    Callback = function(v87) --[[ Line: 0 ]] --[[ Name:  ]]
+        getgenv().astro.customcframetpy = v87;
+    end
+});
+local _ = v82:AddSlider({
+    Name = "Z Offset", 
+    Flag = "FakePos_Z", 
+    Default = 0, 
+    Min = -20, 
+    Max = 20, 
+    Rounding = 1, 
+    Callback = function(v89) --[[ Line: 0 ]] --[[ Name:  ]]
+        getgenv().astro.customcframetpz = v89;
+    end
+});
+local v91 = v81:DrawSection({
+    Name = "Target Strafe", 
+    Position = "right"
+});
+local _ = v91:AddToggle({
+    Name = "Enable Target Strafe", 
+    Flag = "TargetStrafe_Enabled", 
+    Default = false, 
+    Callback = function(v92) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.cframe.TargetStrafe.Enabled = v92;
+    end
+});
+local _ = v91:AddTextBox({
+    Name = "Strafe Speed", 
+    Flag = "TargetStrafe_Speed_Text", 
+    Default = "10", 
+    Callback = function(v94) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v95 = tonumber(v94);
+        if v95 then
+            v95 = math.clamp(v95, 1, 20);
+            venus.cframe.TargetStrafe.StrafeSpeed = v95;
+        else
+            StrafeSpeedTextBox:SetText(tostring(venus.cframe.TargetStrafe.StrafeSpeed));
+        end;
+    end
+});
+local _ = v91:AddTextBox({
+    Name = "Strafe Radius", 
+    Flag = "TargetStrafe_Radius_Text", 
+    Default = "7", 
+    Callback = function(v97) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v98 = tonumber(v97);
+        if v98 then
+            v98 = math.clamp(v98, 1, 15);
+            venus.cframe.TargetStrafe.StrafeRadius = v98;
+        else
+            StrafeRadiusTextBox:SetText(tostring(venus.cframe.TargetStrafe.StrafeRadius));
+        end;
+    end
+});
+local _ = v91:AddTextBox({
+    Name = "Strafe Height", 
+    Flag = "TargetStrafe_Height_Text", 
+    Default = "3", 
+    Callback = function(v100) --[[ Line: 0 ]] --[[ Name:  ]]
+        local v101 = tonumber(v100);
+        if v101 then
+            v101 = math.clamp(v101, 1, 10);
+            venus.cframe.TargetStrafe.StrafeHeight = v101;
+        else
+            StrafeHeightTextBox:SetText(tostring(venus.cframe.TargetStrafe.StrafeHeight));
+        end;
+    end
+});
+local _ = v91:AddToggle({
+    Name = "Randomizer Mode", 
+    Flag = "TargetStrafe_Randomizer", 
+    Default = false, 
+    Callback = function(v103) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.cframe.TargetStrafe.RandomizerMode = v103;
+    end
+});
+local _ = v81:DrawSection({
+    Name = "Resolver", 
+    Position = "left"
+}):AddToggle({
+    Name = "Enable Resolver", 
+    Flag = "Resolver_Enabled", 
+    Default = false, 
+    Callback = function(v105) --[[ Line: 0 ]] --[[ Name:  ]]
+        venus.Resolver.Enable = v105;
+    end
+});
+v11:DrawCategory({
+    Name = "Visuals"
+});
+local _ = v11:DrawTab({
+    Name = "Visuals", 
+    Icon = "eye", 
+    EnableScrolling = true
+});
+local v108 = Drawing.new("Circle");
+v108.Position = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y / 2);
+v108.Radius = venus.FOV.Size;
+v108.Color = Color3.fromRGB(255, 255, 255);
+v108.Thickness = 1;
+v108.Filled = false;
+v108.Visible = false;
+local _ = v108;
+l_RunService_0.PostSimulation:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: l_CurrentCamera_0 (ref), v108 (ref)
+    local _ = tick();
+    if venus.FOV.Enabled then
+        local v111 = l_CurrentCamera_0.ViewportSize / 2;
+        v108.Visible = true;
+        v108.Filled = venus.FOV.Filled;
+        v108.Position = v111;
+        v108.Radius = venus.FOV.Size;
+        v108.Color = venus.FOV.Color;
+    else
+        v108.Visible = false;
+    end;
+end);
+local l_PlayerGui_0 = game.Players.LocalPlayer:WaitForChild("PlayerGui");
+local l_ScreenGui_0 = Instance.new("ScreenGui");
+l_ScreenGui_0.Name = "LockScreenGui";
+l_ScreenGui_0.Parent = l_PlayerGui_0;
+l_ScreenGui_0.ResetOnSpawn = false;
+local l_ImageButton_0 = Instance.new("ImageButton");
+l_ImageButton_0.Name = "LockButton";
+l_ImageButton_0.Size = UDim2.new(0, 80, 0, 80);
+l_ImageButton_0.Position = UDim2.new(0.5, -250, 0.8, -225);
+l_ImageButton_0.Image = "rbxassetid://132627442593301";
+l_ImageButton_0.BackgroundColor3 = Color3.fromRGB(20, 20, 20);
+l_ImageButton_0.BackgroundTransparency = 0.45;
+l_ImageButton_0.Parent = l_ScreenGui_0;
+l_ImageButton_0.Active = true;
+l_ImageButton_0.Draggable = true;
+local l_UICorner_0 = Instance.new("UICorner");
+l_UICorner_0.CornerRadius = UDim.new(0, 10);
+l_UICorner_0.Parent = l_ImageButton_0;
+local v116 = false;
+local v117 = nil;
+local v118 = nil;
+local function v119() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v118 (ref), v116 (ref), v117 (ref)
+    if v118 then
+        v118:Remove();
+        v118 = nil;
+    end;
+    if v116 and v117 and v117.Character and v117.Character:FindFirstChild(venus.AimPart) and venus.ShowTargetDot then
+        v118 = Drawing.new("Circle");
+        v118.Visible = true;
+        v118.Color = venus.DotColor;
+        v118.Thickness = 1;
+        v118.Filled = true;
+        v118.Radius = 3;
+    end;
+end;
+_G.PRED = 0.057;
+_G.PART = "HumanoidRootPart";
+_G.Frame = Vector3.new(0, 0.53, 0);
+_G.AIR_OFFSET = Vector3.new(0, -2.3, 0);
+local function v121() --[[ Line: 0 ]] --[[ Name:  ]]
+    local l_ValueString_0 = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString();
+    return tonumber(string.split(l_ValueString_0, " ")[1]) / 1000 + _G.PRED;
+end;
+local function v126(v122) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v121 (ref)
+    if not v122 or not v122.Character or not v122.Character:FindFirstChild(_G.PART) then
+        return nil;
+    else
+        local v123 = v122.Character[_G.PART];
+        local l_Frame_0 = _G.Frame;
+        if v122.Character.Humanoid.Jump and v122.Character.Humanoid.FloorMaterial == Enum.Material.Air then
+            l_Frame_0 = _G.AIR_OFFSET;
+        end;
+        local v125 = v121();
+        return v123.Position + l_Frame_0 + v123.Velocity * v125;
+    end;
+end;
+local function v142() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: l_CurrentCamera_0 (ref), l_Players_0 (ref), l_LocalPlayer_0 (ref), l_l_LocalPlayer_0_Mouse_0 (ref), l_l_Workspace_0_0 (ref)
+    local v127 = nil;
+    local l_huge_0 = math.huge;
+    local _ = Vector2.new(l_CurrentCamera_0.ViewportSize.X / 2, l_CurrentCamera_0.ViewportSize.Y / 2);
+    local v130 = 30;
+    for _, v132 in pairs(l_Players_0:GetPlayers()) do
+        if v132 ~= l_LocalPlayer_0 and v132.Character and v132.Character:FindFirstChild(venus.AimPart) and v132.Character:FindFirstChild("Humanoid") and v132.Character.Humanoid.Health > 0 then
+            local v133 = v132.Character[venus.AimPart];
+            local v134 = v133.Position - l_CurrentCamera_0.CFrame.Position;
+            local l_Magnitude_0 = v134.Magnitude;
+            local v136, v137 = l_CurrentCamera_0:WorldToViewportPoint(v133.Position);
+            if v137 then
+                local v138 = math.deg(math.acos(l_CurrentCamera_0.CFrame.LookVector:Dot(v134.Unit)));
+                if v138 <= v130 then
+                    local v139 = (Vector2.new(v136.X, v136.Y) - Vector2.new(l_l_LocalPlayer_0_Mouse_0.X, l_l_LocalPlayer_0_Mouse_0.Y)).Magnitude * 0.02 + v138 * 0.03;
+                    if v138 < 5 then
+                        v139 = v139 * 0.001;
+                    end;
+                    local v140 = Ray.new(l_CurrentCamera_0.CFrame.Position, v134.Unit * l_Magnitude_0);
+                    local l_l_l_Workspace_0_0_PartOnRayWithIgnoreList_0 = l_l_Workspace_0_0:FindPartOnRayWithIgnoreList(v140, {
+                        l_LocalPlayer_0.Character
+                    });
+                    if (not l_l_l_Workspace_0_0_PartOnRayWithIgnoreList_0 or l_l_l_Workspace_0_0_PartOnRayWithIgnoreList_0:IsDescendantOf(v132.Character)) and v139 < l_huge_0 then
+                        v127 = v132;
+                        l_huge_0 = v139;
+                    end;
+                end;
+            end;
+        end;
+    end;
+    return v127;
+end;
+local function v143() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v116 (ref), v117 (ref), v142 (ref), v15 (ref), l_ImageButton_0 (ref), v9 (ref), v119 (ref), v118 (ref)
+    v116 = not v116;
+    if v116 then
+        v117 = v142();
+        v15 = v117;
+        if v117 then
+            l_ImageButton_0.Image = "rbxassetid://132627442593301";
+            v9.new({
+                Title = "Locked", 
+                Content = "Locked onto: " .. v117.Name, 
+                Duration = 3, 
+                Icon = "rbxassetid://120245531583106"
+            });
+            if venus.ShowTargetDot then
+                v119();
+            end;
+        else
+            v116 = false;
+            v15 = nil;
+            l_ImageButton_0.Image = "rbxassetid://132627442593301";
+            v9.new({
+                Title = "No Target", 
+                Content = "No valid target found", 
+                Duration = 3, 
+                Icon = "rbxassetid://120245531583106"
+            });
+            if v118 then
+                v118:Remove();
+                v118 = nil;
+            end;
+        end;
+    else
+        v117 = nil;
+        v15 = nil;
+        l_ImageButton_0.Image = "rbxassetid://132627442593301";
+        v9.new({
+            Title = "Unlocked", 
+            Content = "Target unlocked", 
+            Duration = 3, 
+            Icon = "rbxassetid://120245531583106"
+        });
+        if v118 then
+            v118:Remove();
+            v118 = nil;
+        end;
+    end;
+end;
+l_ImageButton_0.MouseButton1Click:Connect(v143);
+l_UserInputService_0.InputBegan:Connect(function(v144, v145) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v143 (ref)
+    if v144.KeyCode == Enum.KeyCode.Q and not v145 then
+        v143();
+    end;
+end);
+local function v149() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v117 (ref), v126 (ref), v118 (ref), v119 (ref), l_CurrentCamera_0 (ref)
+    if venus.Enabled and v117 and v117.Character and v117.Character:FindFirstChild(venus.AimPart) then
+        local v146 = v126(v117);
+        if v146 then
+            if venus.ShakeValue > 0 then
+                v146 = v146 + Vector3.new((math.random() * 2 - 1) * venus.ShakeValue, 0, 0);
+            end;
+            if venus.ShowTargetDot then
+                if not v118 then
+                    v119();
+                end;
+                local v147 = l_CurrentCamera_0:WorldToViewportPoint(v146);
+                if v147.Z > 0 then
+                    v118.Position = Vector2.new(v147.X, v147.Y);
+                    v118.Visible = true;
+                else
+                    v118.Visible = false;
+                end;
+            end;
+            local v148 = CFrame.new(l_CurrentCamera_0.CFrame.Position, v146);
+            l_CurrentCamera_0.CFrame = l_CurrentCamera_0.CFrame:Lerp(v148, venus.Smoothness);
+        end;
+    elseif v118 then
+        v118.Visible = false;
+    end;
+end;
+local function v155() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v117 (ref), l_LocalPlayer_0 (ref)
+    if venus.cframe.TargetStrafe.Enabled and v117 and v117.Character and v117.Character:FindFirstChild("HumanoidRootPart") then
+        local l_Character_0 = l_LocalPlayer_0.Character;
+        if l_Character_0 and l_Character_0:FindFirstChild("HumanoidRootPart") then
+            local l_Position_0 = v117.Character.HumanoidRootPart.Position;
+            local v152 = tick() * venus.cframe.TargetStrafe.StrafeSpeed;
+            local v153 = Vector3.new(math.cos(v152) * venus.cframe.TargetStrafe.StrafeRadius, venus.cframe.TargetStrafe.StrafeHeight, math.sin(v152) * venus.cframe.TargetStrafe.StrafeRadius);
+            if venus.cframe.TargetStrafe.RandomizerMode then
+                v153 = v153 * (0.8 + math.random() * 0.4);
+            end;
+            local v154 = l_Position_0 + v153;
+            v154 = Vector3.new(v154.X, math.max(v154.Y, l_Position_0.Y), v154.Z);
+            l_Character_0:SetPrimaryPartCFrame(CFrame.new(v154));
+            l_Character_0.HumanoidRootPart.CFrame = CFrame.new(l_Character_0.HumanoidRootPart.Position, Vector3.new(l_Position_0.X, l_Character_0.HumanoidRootPart.Position.Y, l_Position_0.Z));
+        end;
+    end;
+end;
+local function v159() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v117 (ref), l_LocalPlayer_0 (ref)
+    if venus.AutoAirEnabled and v117 and v117.Character then
+        local l_HumanoidRootPart_0 = v117.Character:FindFirstChild("HumanoidRootPart");
+        if l_HumanoidRootPart_0 and l_HumanoidRootPart_0.Velocity.Y > 25 then
+            local l_Character_1 = l_LocalPlayer_0.Character;
+            if l_Character_1 then
+                local l_Tool_0 = l_Character_1:FindFirstChildOfClass("Tool");
+                if l_Tool_0 then
+                    l_Tool_0:Activate();
+                end;
+            end;
+        end;
+    end;
+end;
+local v160 = getrawmetatable(game);
+local l___namecall_0 = v160.__namecall;
+setreadonly(v160, false);
+v160.__namecall = newcclosure(function(...) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v14 (ref), v15 (ref), l___namecall_0 (ref)
+    local v162 = {
+        ...
+    };
+    if target_aim.Aiming.Target.Enabled and v14 and v15 and getnamecallmethod() == "FireServer" and v162[2] == "UpdateMousePos" then
+        v162[3] = v15.Character[target_aim.Aiming.Target.TargetPart].Position + Vector3.new(0.01, target_aim.Aiming.Target.JumpOffset, 0.01) + v15.Character[target_aim.Aiming.Target.TargetPart].Velocity * target_aim.Aiming.Target.Prediction;
+        return l___namecall_0(unpack(v162));
+    else
+        return l___namecall_0(...);
+    end;
+end);
+setreadonly(v160, true);
+local l_RunService_1 = game:GetService("RunService");
+local _ = game:GetService("UserInputService");
+local l_LocalPlayer_1 = game:GetService("Players").LocalPlayer;
+local _ = workspace.CurrentCamera;
+local v167 = Instance.new("Highlight", game.CoreGui);
+local v168 = Drawing.new("Circle");
+v168.Filled = true;
+v168.Visible = false;
+v168.Thickness = 2;
+v168.Radius = 7;
+v168.NumSides = 60;
+local v169 = Instance.new("Part", game.Workspace);
+local v170 = Instance.new("BillboardGui", v169);
+local v171 = Instance.new("Frame", v170);
+local v172 = Instance.new("UICorner", v171);
+v170.Name = "azure_billboarddot";
+v170.Adornee = v169;
+v170.Size = UDim2.new(0.6, 0, 0.6, 0);
+v170.AlwaysOnTop = true;
+v171.Size = UDim2.new(1, 0, 1, 0);
+v171.BackgroundTransparency = 0;
+v172.CornerRadius = UDim.new(50, 50);
+v169.CanCollide = false;
+v169.Anchored = true;
+v169.CFrame = CFrame.new(0, 2000, 0);
+v169.Transparency = 1;
+local l_ScreenGui_1 = Instance.new("ScreenGui");
+local l_Frame_1 = Instance.new("Frame");
+local l_ImageLabel_0 = Instance.new("ImageLabel");
+local l_Frame_2 = Instance.new("Frame");
+local l_UIGradient_0 = Instance.new("UIGradient");
+local l_UIGradient_1 = Instance.new("UIGradient");
+local l_Frame_3 = Instance.new("Frame");
+local l_UIGradient_2 = Instance.new("UIGradient");
+local l_Frame_4 = Instance.new("Frame");
+local l_UIGradient_3 = Instance.new("UIGradient");
+local l_TextLabel_0 = Instance.new("TextLabel");
+l_ScreenGui_1.Name = "Azure_TargetStats";
+l_ScreenGui_1.Parent = game.CoreGui;
+l_ScreenGui_1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+l_Frame_1.Name = "Background";
+l_Frame_1.Parent = l_ScreenGui_1;
+l_Frame_1.BackgroundColor3 = Color3.fromHex("#1C1D21");
+l_Frame_1.BorderSizePixel = 0;
+l_Frame_1.Position = UDim2.new(0.388957828, 0, 0.700122297, 0);
+l_Frame_1.Size = UDim2.new(0, 200, 0, 50);
+l_Frame_1.Visible = false;
+l_Frame_1.AnchorPoint = Vector2.new(0.5, 0.5);
+l_Frame_1.BackgroundTransparency = 0.5;
+local l_UICorner_1 = Instance.new("UICorner");
+l_UICorner_1.CornerRadius = UDim.new(0, 8);
+l_UICorner_1.Parent = l_Frame_1;
+l_ImageLabel_0.Name = "Picture";
+l_ImageLabel_0.Parent = l_Frame_1;
+l_ImageLabel_0.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+l_ImageLabel_0.BorderSizePixel = 0;
+l_ImageLabel_0.Position = UDim2.new(0.0279329624, 0, 0.0704225376, 0);
+l_ImageLabel_0.Size = UDim2.new(0, 40, 0, 40);
+l_ImageLabel_0.Transparency = 1;
+l_ImageLabel_0.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png";
+l_Frame_2.Name = "Top";
+l_Frame_2.Parent = l_Frame_1;
+l_Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+l_Frame_2.BorderSizePixel = 0;
+l_Frame_2.Position = UDim2.new(0, 0, -0.101449274, 0);
+l_Frame_2.Size = UDim2.new(0, 200, 0, 5);
+l_UIGradient_0.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromHex("#50CEF7")), 
+    ColorSequenceKeypoint.new(1, Color3.fromHex("#50CEF7"))
+});
+l_UIGradient_0.Rotation = 90;
+l_UIGradient_0.Parent = l_Frame_2;
+l_UIGradient_1.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromHex("#1C1D21")), 
+    ColorSequenceKeypoint.new(1, Color3.fromHex("#1C1D21"))
+});
+l_UIGradient_1.Rotation = 90;
+l_UIGradient_1.Parent = l_Frame_1;
+l_Frame_3.Name = "HealthBarBackground";
+l_Frame_3.Parent = l_Frame_1;
+l_Frame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+l_Frame_3.BorderSizePixel = 0;
+l_Frame_3.Position = UDim2.new(0.215083793, 0, 0.348234326, 0);
+l_Frame_3.Size = UDim2.new(0, 150, 0, 10);
+l_Frame_3.Transparency = 1;
+l_UIGradient_2.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(58, 58, 58)), 
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 30))
+});
+l_UIGradient_2.Rotation = 90;
+l_UIGradient_2.Parent = l_Frame_3;
+l_Frame_4.Name = "HealthBar";
+l_Frame_4.Parent = l_Frame_3;
+l_Frame_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+l_Frame_4.BorderSizePixel = 0;
+l_Frame_4.Position = UDim2.new(-0.00336122862, 0, 0.164894029, 0);
+l_Frame_4.Size = UDim2.new(0, 130, 0, 10);
+l_UIGradient_3.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromHex("#50CEF7")), 
+    ColorSequenceKeypoint.new(1, Color3.fromHex("#50CEF7"))
+});
+l_UIGradient_3.Rotation = 90;
+l_UIGradient_3.Parent = l_Frame_4;
+l_TextLabel_0.Name = "NameOfTarget";
+l_TextLabel_0.Parent = l_Frame_1;
+l_TextLabel_0.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+l_TextLabel_0.BackgroundTransparency = 1;
+l_TextLabel_0.Position = UDim2.new(0.220670387, 0, 0.0704225376, 0);
+l_TextLabel_0.Size = UDim2.new(0, 150, 0, 15);
+l_TextLabel_0.Font = Enum.Font.Code;
+l_TextLabel_0.TextColor3 = Color3.fromRGB(255, 255, 255);
+l_TextLabel_0.TextScaled = true;
+l_TextLabel_0.TextSize = 14;
+l_TextLabel_0.TextStrokeTransparency = 0;
+l_TextLabel_0.TextWrapped = true;
+local function v186(v185) --[[ Line: 0 ]] --[[ Name:  ]]
+    return v185 and v185.Character and v185.Character:FindFirstChild("HumanoidRootPart") ~= nil and v185.Character:FindFirstChild("Humanoid") ~= nil and v185.Character:FindFirstChild("Head") ~= nil and v185.Character.Humanoid.Health > 0;
+end;
+l_RunService_1.Stepped:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v16 (ref), v14 (ref), v15 (ref), v186 (ref), l_LocalPlayer_1 (ref)
+    if target_aim.Aiming.Target.Enabled and v16 and v14 and v15 and v186(v15) then
+        workspace.CurrentCamera.CameraSubject = v15.Character.Humanoid;
+    else
+        workspace.CurrentCamera.CameraSubject = l_LocalPlayer_1.Character.Humanoid;
+    end;
+end);
+l_RunService_1.Stepped:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v14 (ref), v15 (ref), v186 (ref), v18 (ref), v168 (ref), v19 (ref), v171 (ref), v169 (ref), v20 (ref), l_l_LocalPlayer_0_Mouse_0 (ref), v21 (ref), v167 (ref), v22 (ref), v23 (ref)
+    if target_aim.Aiming.Target.Enabled and v14 and v15 and v186(v15) then
+        if v18 then
+            v168.Color = v19;
+            v171.BackgroundColor3 = v19;
+            if v14 then
+                v169.CFrame = CFrame.new(v15.Character[target_aim.Aiming.Target.TargetPart].Position + Vector3.new(0, target_aim.Aiming.Target.JumpOffset, 0) + v15.Character[target_aim.Aiming.Target.TargetPart].Velocity * target_aim.Aiming.Target.Prediction);
+                v168.Visible = false;
+            else
+                v169.CFrame = CFrame.new(0, 9999, 0);
+                if v20 then
+                    v168.Visible = true;
+                    v168.Position = Vector2.new(l_l_LocalPlayer_0_Mouse_0.X, l_l_LocalPlayer_0_Mouse_0.Y + game:GetService("GuiService"):GetGuiInset().Y);
+                else
+                    v168.Visible = false;
+                end;
+            end;
+        else
+            v169.CFrame = CFrame.new(0, 9999, 0);
+            v168.Visible = false;
+        end;
+        if v21 then
+            v167.Parent = v15.Character;
+            v167.FillColor = v22;
+            v167.OutlineColor = v23;
+        else
+            v167.Parent = game.CoreGui;
+        end;
+    else
+        v169.CFrame = CFrame.new(0, 9999, 0);
+        v168.Visible = false;
+        v167.Parent = game.CoreGui;
+    end;
+end);
+l_RunService_1.RenderStepped:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v14 (ref), v15 (ref), v186 (ref), v17 (ref), l_LocalPlayer_1 (ref)
+    if v14 and target_aim.Aiming.Target.Enabled and v15 and v186(v15) and v15.Character:FindFirstChild("UpperTorso") then
+        if v17 then
+            l_LocalPlayer_1.Character.HumanoidRootPart.CFrame = CFrame.new(l_LocalPlayer_1.Character.HumanoidRootPart.CFrame.Position, Vector3.new(v15.Character.HumanoidRootPart.CFrame.X, l_LocalPlayer_1.Character.HumanoidRootPart.CFrame.Position.Y, v15.Character.HumanoidRootPart.CFrame.Z));
+            l_LocalPlayer_1.Character.Humanoid.AutoRotate = false;
+        end;
+    else
+        l_LocalPlayer_1.Character.Humanoid.AutoRotate = true;
+    end;
+end);
+task.spawn(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v14 (ref), v15 (ref), v186 (ref), l_Frame_1 (ref), l_TextLabel_0 (ref), l_ImageLabel_0 (ref), l_Frame_4 (ref)
+    while task.wait() do
+        if target_aim.Aiming.Target.TargetStats and target_aim.Aiming.Target.Enabled and v14 and v15 and v186(v15) then
+            l_Frame_1.Visible = true;
+            l_TextLabel_0.Text = tostring(v15.Character.Humanoid.DisplayName) .. " [" .. tostring(v15.Name) .. "]";
+            l_ImageLabel_0.Image = "rbxthumb://type=AvatarHeadShot&id=" .. v15.UserId .. "&w=420&h=420";
+            l_Frame_4:TweenSize(UDim2.new(v15.Character.Humanoid.Health / v15.Character.Humanoid.MaxHealth, 0, 1, 0), "In", "Linear", 0.25);
+        else
+            l_Frame_1.Visible = false;
+        end;
+    end;
+end);
+local v187 = nil;
+local v188 = nil;
+local function v193(v189) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v187 (ref), v188 (ref)
+    local l_Position_1 = v189.Position;
+    local v191 = tick();
+    if v187 and v188 then
+        local v192 = v191 - v188;
+        v189.Velocity = (l_Position_1 - v187) / v192;
+    end;
+    v187 = l_Position_1;
+    v188 = v191;
+end;
+l_RunService_0.Heartbeat:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v117 (ref), v193 (ref)
+    if venus.Resolver.Enable and v117 and v117.Character and v117.Character:FindFirstChild(venus.AimPart) then
+        v193(v117.Character[venus.AimPart]);
+    end;
+end);
+if getgenv().AstroDesyncLoaded then
+    return;
+else
+    getgenv().AstroDesyncLoaded = true;
+    local l_RunService_2 = game:GetService("RunService");
+    local l_UserInputService_2 = game:GetService("UserInputService");
+    local l_LocalPlayer_2 = game:GetService("Players").LocalPlayer;
+    local l_CurrentCamera_2 = workspace.CurrentCamera;
+    local v198 = false;
+    local v199 = CFrame.new();
+    local v200 = game:GetObjects("rbxassetid://9474737816")[1];
+    v200.Head.Face:Destroy();
+    for _, v202 in ipairs(v200:GetChildren()) do
+        if v202:IsA("BasePart") then
+            v202.Transparency = v202.Name == "HumanoidRootPart" and 1 or 0.5;
+            v202.Material = Enum.Material.ForceField;
+            v202.Color = Color3.fromRGB(190, 139, 255);
+            v202.CanCollide = false;
+            v202.Anchored = false;
+        end;
+    end;
+    l_RunService_2.RenderStepped:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v198 (ref), l_CurrentCamera_2 (ref)
+        if v198 then
+            local v203 = CFrame.new(getgenv().astro.customcframetpx, getgenv().astro.customcframetpy, getgenv().astro.customcframetpz);
+            l_CurrentCamera_2.CFrame = l_CurrentCamera_2.CFrame * v203:Inverse();
+        end;
+    end);
+    l_RunService_2.Heartbeat:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v198 (ref), l_LocalPlayer_2 (ref), v199 (ref), v200 (ref), l_RunService_2 (ref)
+        v198 = getgenv().astro.cframetpdesync;
+        local l_Character_2 = l_LocalPlayer_2.Character;
+        local v205 = l_Character_2 and l_Character_2:FindFirstChild("HumanoidRootPart");
+        if v198 and v205 then
+            v199 = v205.CFrame;
+            local v206 = CFrame.new(getgenv().astro.customcframetpx, getgenv().astro.customcframetpy, getgenv().astro.customcframetpz);
+            local v207 = v199 * v206;
+            if getgenv().astro.visualizemodellol then
+                if not v200.Parent then
+                    v200.Parent = workspace;
+                end;
+                v200:SetPrimaryPartCFrame(v207);
+            elseif v200.Parent then
+                v200.Parent = nil;
+            end;
+            v205.CFrame = v207;
+            l_RunService_2.RenderStepped:Wait();
+            v205.CFrame = v199;
+        elseif v200.Parent then
+            v200.Parent = nil;
+        end;
+    end);
+    l_UserInputService_2.InputBegan:Connect(function(v208, v209) --[[ Line: 0 ]] --[[ Name:  ]]
+        if v209 then
+            return;
+        else
+            if v208.KeyCode == getgenv().astro.keybind then
+                getgenv().astro.cframetpdesync = not getgenv().astro.cframetpdesync;
+                local v210 = getgenv().astro.cframetpdesync and "Enabled" or "Disabled";
+                print("Position Desync: " .. v210);
+            end;
+            return;
+        end;
+    end);
+    l_RunService_2.RenderStepped:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v116 (ref), v149 (ref), v159 (ref), v155 (ref), l_LocalPlayer_2 (ref)
+        if v116 then
+            if venus.Enabled then
+                v149();
+            end;
+            v159();
+            if venus.cframe.TargetStrafe.Enabled then
+                v155();
+            end;
+        end;
+        if venus.cframe.enabled and l_LocalPlayer_2.Character and l_LocalPlayer_2.Character:FindFirstChild("HumanoidRootPart") then
+            local l_HumanoidRootPart_1 = l_LocalPlayer_2.Character.HumanoidRootPart;
+            l_HumanoidRootPart_1.CFrame = l_HumanoidRootPart_1.CFrame + l_LocalPlayer_2.Character.Humanoid.MoveDirection * venus.cframe.speed;
+        end;
+    end);
+    v9.new({
+        Title = "Success", 
+        Content = "Chinaware initialized successfully!", 
+        Duration = 5, 
+        Icon = "rbxassetid://120245531583106"
+    });
+    return;
+end;
